@@ -27,6 +27,7 @@ void helper(int arr[],int low,int high,int target)
     {
         cout<<endl<<arr[xurr]<<" "<<ans<<endl;
     }
+    else cout<<"Key not present"<<endl;
 
 }
 int main()
@@ -42,8 +43,7 @@ int main()
     cin>>arr[i];
     int target;
     cin>>target;
-    helper(arr,0,size,target);
-    
+    helper(arr,0,size-1,target);
  }
 }
     
