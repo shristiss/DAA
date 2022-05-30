@@ -49,7 +49,7 @@ int main(){
 
     if(!fl) {
         for(int i = 0;i<N;i++) {
-            cout << i << " " << dist[i] << endl;
+            cout << src << " : " <<i<<" ->" <<dist[i] << endl;
         }
     }
 
