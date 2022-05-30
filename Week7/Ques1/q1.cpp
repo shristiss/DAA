@@ -29,7 +29,7 @@ void dijkstra(int source,int v, vector<pair<int,int>>adj[])
   }
 for(int i=1;i<dist.size();i++)
 {
-    cout<<"Minimum distance from node "<<i<<" is"<<dist[i]<<endl;
+    cout<<"Minimum distance from node "<<"1"<<" is"<<dist[i]<<endl;
 }
 }
 int main()
