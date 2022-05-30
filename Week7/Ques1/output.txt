@@ -1,0 +1,5 @@
+Minimum distance from node 1 is 0
+Minimum distance from node 1 is 1
+Minimum distance from node 1 is 3
+Minimum distance from node 1 is 3
+Minimum distance from node 1 is 2
