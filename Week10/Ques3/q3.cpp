@@ -1,15 +1,18 @@
-/******************************************************************************
-
-                              Online C++ Compiler.
-               Code, Compile, Run and Debug C++ program online.
-Write your code in this editor and press "Run" button to compile and execute it.
-
-*******************************************************************************/
-
 #include <iostream>
 
 using namespace std;
-
+double findmedian(int arr[],int n)
+{
+    double ans;
+    if(n%2==0)
+    {
+      ans=double(arr[n/2]);
+    }
+    else{
+        ans= (double)(arr[(n-1)/2] + arr[n/2])/2.0;
+    }
+    return ans;
+}
 int main()
 {
    int n;
@@ -35,7 +38,8 @@ int main()
   {
       if(arr[i]==res)count++;
   }
-  if(count>n/2)cout<<"yes"<<endl<<res;
-  else cout<<"No";
+  if(count>n/2)cout<<"yes"<<endl;
+  else cout<<"No"<<endl;
+ cout<<"Median ="<< findmedian(arr,n);
     return 0;
 }
