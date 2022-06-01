@@ -29,7 +29,7 @@ void prims(vector<pair<int,int>>adj[],int v)
     }
     for(int i=1;i<v;i++)
     {
-        cout<<parent[i]<<" "<<i<<endl;
+        cout<<parent[i]<<" "<<i<<" "<<key[i]<<endl;
     }
     
 }
