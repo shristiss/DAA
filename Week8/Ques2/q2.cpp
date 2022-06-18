@@ -1,79 +1,62 @@
-#include<bits/stdc++.h>
-#include<iostream>
+#include <bits/stdc++.h>
+
 using namespace std;
-struct node
-{
-    int u,v,wt;
-    node(int first,int second, int weight)
-    {
-        u=first;
-        v=second;
-        wt=weight;
-    }
-};
+vector<pair<int, pair<int, int>>> g; 
+int parent[5];
+int Rank[5];
 
-bool cmp(node a,node b)
+void make(int a)
 {
-    return (a.wt<b.wt);
+    parent[a]=a;
+    Rank[a]=0;
 }
-
-int findpar(int u,vector<int>&parent)
+int find(int a)
 {
-    if(u==parent[u])
-    {
-        return u;
-    }
-    return findpar(parent[u],parent);
+    if(parent[a]==a)return parent[a];
+    else find(parent[a]);
 }
-
-void unionoperation(int u,int v,vector<int>&parent,vector<int>&rank)
+void unionn(int a,int b)
 {
-    u=findpar(u,parent);
-    v=findpar(v,parent);
-    if(rank[u]<rank[v])
+    if(find(a)==find(b))return;
+    if(Rank[a]>Rank[b])
     {
-        parent[u]=v;
+        parent[b]=a;
+       
     }
-    else if(rank[v]<rank[u])
+    else if(Rank[a]<Rank[b])
     {
-        parent[v]=u;
+        parent[a]=b;
+       
     }
-    else
-    {
-        parent[v]=u;
-        rank[u]++;
+    else{
+        parent[b]=a;
+        Rank[a]++;
     }
 }
-
 int main()
 {
-    int vertex,ed;
-    cin>>vertex>>ed;
-    vector <node> edges;
-    for(int i=0;i<ed;i++)
+    int edges;
+    cin>>edges;
+    int ans=0;
+    for(int i=0;i<edges;i++)
     {
         int u,v,wt;
         cin>>u>>v>>wt;
-        edges.push_back(node(u,v,wt));
+       g.push_back({wt,{u,v}});
     }
-    sort(edges.begin(),edges.end(),cmp);
-    vector <int> parent(vertex);
-    for(int i=0;i<vertex;i++)
+    for(int i=0;i<5;i++)
     {
-        parent[i]=i;
+        make(i);
     }
-    vector <int> rank(vertex,0);
-    int cost=0;
-    vector <pair <int,int>> mst;
-    for(auto i:edges)
+    sort(g.begin(),g.end());
+    for(auto it:g)
     {
-        if(findpar(i.u,parent)!=findpar(i.v,parent))
-        {
-            cost+=i.wt;
-            mst.push_back(make_pair(i.u,i.v));
-            unionoperation(i.u,i.v,parent,rank);
-        }
+        int w=it.first;
+        int u=it.second.first;
+        int v=it.second.second;
+        if(find(u)==find(v))continue;
+        unionn(u,v);
+        ans+=w;
     }
-    cout<<"Minimum Spanning Weight: "<<cost<<endl;
-    return 0;
+    cout<<ans;
 }
